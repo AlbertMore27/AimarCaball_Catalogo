@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Jale — Catalogo 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #0D1B2A;
+      --navy-mid:#1C2B3A;
+      --orange:  #E87722;
+      --orange-dk:#C4621A;
+      --concrete:#8C9EAD;
+      --cream:   #F5F0E8;
+      --steel:   #2E4057;
+      --white:   #FFFFFF;
+      --gold:    #D4A853;
+      --danger:  #FF3B30;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ──────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5vw;
+      height: 64px;
+      background: rgba(13,27,42,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(232,119,34,0.25);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      height: 40px;
+      width: 40px;
+      object-fit: contain;
+    }
+    .nav-brand {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--cream);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--concrete);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--orange); }
+
+    .nav-cta {
+      background: var(--orange);
+      color: var(--navy);
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 9px 20px;
+      text-decoration: none;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: var(--orange-dk); transform: translateY(-1px); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--cream);
+      transition: all 0.3s;
+    }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding-top: 64px;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 40%, var(--steel) 100%);
+    }
+    /* Diagonal blueprint grid overlay */
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(232,119,34,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232,119,34,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    /* Orange diagonal slash */
+    .hero-slash {
+      position: absolute;
+      right: -10%;
+      top: 0;
+      bottom: 0;
+      width: 55%;
+      background: linear-gradient(135deg, transparent 30%, rgba(232,119,34,0.07) 30%, rgba(232,119,34,0.12) 100%);
+      clip-path: polygon(20% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 5vw;
+      max-width: 700px;
+    }
+    .hero-eyebrow {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 32px; height: 2px;
+      background: var(--orange);
+    }
+    .hero-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 5.2rem);
+      font-weight: 700;
+      line-height: 1.0;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .hero-title .accent { color: var(--orange); }
+    .hero-subtitle {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      font-weight: 400;
+      color: var(--concrete);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero-desc {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(245,240,232,0.75);
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 40px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--orange);
+      color: var(--navy);
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      text-decoration: none;
+      clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--orange-dk); transform: translateY(-2px); }
+    .btn-secondary {
+      color: var(--cream);
+      font-family: 'Oswald', sans-serif;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 13px 32px;
+      text-decoration: none;
+      border: 1px solid rgba(245,240,232,0.3);
+      clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+      transition: border-color 0.2s, color 0.2s;
+      display: inline-block;
+    }
+    .btn-secondary:hover { border-color: var(--orange); color: var(--orange); }
+
+    .hero-stats {
+      position: absolute;
+      bottom: 48px;
+      right: 5vw;
+      display: flex;
+      gap: 40px;
+    }
+    .stat {
+      text-align: right;
+    }
+    .stat-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--orange);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--concrete);
+      margin-top: 4px;
+    }
+
+    /* ── SECTION WRAPPER ───────────────────────────────── */
+    section { padding: 96px 5vw; }
+
+    .section-eyebrow {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-eyebrow::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(232,119,34,0.25);
+      max-width: 80px;
+    }
+    .section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      line-height: 1.1;
+    }
+
+    /* ── MISION/VISION ─────────────────────────────────── */
+    #nosotros {
+      background: var(--navy-mid);
+      position: relative;
+    }
+    #nosotros::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--orange), transparent);
+    }
+    .mv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 52px;
+    }
+    .mv-card {
+      border: 1px solid rgba(232,119,34,0.2);
+      padding: 36px 32px;
+      position: relative;
+      background: rgba(13,27,42,0.5);
+    }
+    .mv-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 40px; height: 3px;
+      background: var(--orange);
+    }
+    .mv-card-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 14px;
+    }
+    .mv-card-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .mv-card p {
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: rgba(245,240,232,0.7);
+    }
+
+    .calidad-block {
+      margin-top: 24px;
+      border: 1px solid rgba(232,119,34,0.15);
+      padding: 36px 32px;
+      background: rgba(13,27,42,0.5);
+      position: relative;
+    }
+    .calidad-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--orange), var(--orange-dk), transparent);
+    }
+    .calidad-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--orange);
+      margin-bottom: 20px;
+    }
+    .calidad-items {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .calidad-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .calidad-icon {
+      width: 32px; height: 32px;
+      flex-shrink: 0;
+      background: rgba(232,119,34,0.12);
+      border: 1px solid rgba(232,119,34,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+    .calidad-icon svg { width: 16px; height: 16px; stroke: var(--orange); fill: none; }
+    .calidad-item-text strong {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .calidad-item-text span {
+      font-size: 0.78rem;
+      color: var(--concrete);
+      line-height: 1.5;
+    }
+
+    /* ── MUNDIAL FEATURED ──────────────────────────────── */
+    #mundial {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    #mundial::after {
+      content: '2026';
+      position: absolute;
+      right: -2%;
+      bottom: -10%;
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(8rem, 18vw, 16rem);
+      font-weight: 700;
+      color: rgba(255,255,255,0.02);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+    .mundial-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .mundial-image-wrap {
+      position: relative;
+    }
+    .mundial-image-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -12px;
+      border: 1px solid rgba(212,168,83,0.3);
+      pointer-events: none;
+    }
+    .mundial-image-wrap::after {
+      content: 'EDICION LIMITADA';
+      position: absolute;
+      top: 16px;
+      left: -8px;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      padding: 5px 12px;
+      clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 6px 100%);
+    }
+    .mundial-image-wrap img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+      background: var(--navy-mid);
+    }
+    .mundial-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 96px; height: 96px;
+      background: var(--orange);
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .mundial-badge-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .mundial-badge-label {
+      font-size: 0.5rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+    .mundial-content {}
+    .mundial-flag {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .flag-stripe {
+      height: 6px;
+      border-radius: 1px;
+    }
+    .flag-stripe.green  { width: 28px; background: #006847; }
+    .flag-stripe.white  { width: 14px; background: rgba(245,240,232,0.8); }
+    .flag-stripe.red    { width: 28px; background: #C8102E; }
+    .mundial-tag {
+      display: inline-block;
+      background: rgba(212,168,83,0.12);
+      border: 1px solid rgba(212,168,83,0.4);
+      color: var(--gold);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      margin-bottom: 20px;
+    }
+    .mundial-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .mundial-desc {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: rgba(245,240,232,0.7);
+      margin-bottom: 28px;
+    }
+    .mundial-specs {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+    .spec-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .spec-dot {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      flex-shrink: 0;
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    }
+    .spec-text {
+      font-size: 0.82rem;
+      color: var(--concrete);
+    }
+    .spec-text strong { color: var(--cream); }
+    .mundial-price-block {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .mundial-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--orange);
+      line-height: 1;
+    }
+    .mundial-currency {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1rem;
+      color: var(--concrete);
+    }
+
+    /* ── CATALOG GRID ──────────────────────────────────── */
+    #catalogo {
+      background: var(--navy-mid);
+    }
+    .catalog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 52px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .catalog-count {
+      font-size: 0.78rem;
+      color: var(--concrete);
+      font-weight: 400;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .product-card {
+      background: var(--navy);
+      border: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+      cursor: default;
+    }
+    .product-card:hover {
+      border-color: rgba(232,119,34,0.4);
+      transform: translateY(-4px);
+    }
+    /* Corner accent */
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: 0 28px 28px 0;
+      border-color: transparent var(--orange) transparent transparent;
+      z-index: 2;
+      transition: border-width 0.25s;
+    }
+    .product-card:hover::before {
+      border-width: 0 38px 38px 0;
+    }
+
+    .card-image {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      background: var(--navy-mid);
+      transition: transform 0.4s;
+    }
+    .product-card:hover .card-image { transform: scale(1.03); }
+    .card-image-wrap { overflow: hidden; position: relative; }
+    .card-image-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 50%;
+      background: linear-gradient(to top, var(--navy), transparent);
+      pointer-events: none;
+    }
+
+    .card-body {
+      padding: 20px 20px 24px;
+    }
+    .card-sku {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+    .card-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.0rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      line-height: 1.25;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .card-desc {
+      font-size: 0.78rem;
+      line-height: 1.65;
+      color: rgba(245,240,232,0.55);
+      margin-bottom: 18px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 14px;
+    }
+    .card-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--orange);
+      line-height: 1;
+    }
+    .card-price span {
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--concrete);
+      display: block;
+      margin-top: 2px;
+      font-family: 'Inter', sans-serif;
+    }
+    .card-action {
+      background: rgba(232,119,34,0.1);
+      border: 1px solid rgba(232,119,34,0.3);
+      color: var(--orange);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 8px 14px;
+      text-decoration: none;
+      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+      transition: background 0.2s, color 0.2s;
+    }
+    .card-action:hover { background: var(--orange); color: var(--navy); }
+
+    /* ── CONTACTO ──────────────────────────────────────── */
+    #contacto {
+      background: var(--navy);
+      border-top: 1px solid rgba(232,119,34,0.15);
+    }
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      margin-top: 52px;
+    }
+    .contacto-intro {
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: rgba(245,240,232,0.65);
+      margin-top: 16px;
+      margin-bottom: 36px;
+    }
+    .contacto-encargado {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px;
+      border: 1px solid rgba(232,119,34,0.18);
+      background: rgba(232,119,34,0.04);
+    }
+    .encargado-avatar {
+      width: 48px; height: 48px;
+      background: rgba(232,119,34,0.15);
+      border: 1px solid rgba(232,119,34,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .encargado-avatar svg { width: 24px; height: 24px; stroke: var(--orange); fill: none; }
+    .encargado-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 4px;
+    }
+    .encargado-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.0rem;
+      font-weight: 600;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .contact-channels {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .contact-channel {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 20px;
+      border: 1px solid rgba(255,255,255,0.06);
+      text-decoration: none;
+      color: var(--cream);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .contact-channel:hover {
+      border-color: rgba(232,119,34,0.3);
+      background: rgba(232,119,34,0.04);
+    }
+    .channel-icon {
+      width: 40px; height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(232,119,34,0.2);
+      background: rgba(232,119,34,0.06);
+      flex-shrink: 0;
+    }
+    .channel-icon svg { width: 20px; height: 20px; }
+    .channel-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--concrete);
+      margin-bottom: 3px;
+    }
+    .channel-value {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--white);
+    }
+
+    /* ── FOOTER ────────────────────────────────────────── */
+    footer {
+      background: #080F17;
+      padding: 40px 5vw;
+      border-top: 1px solid rgba(232,119,34,0.1);
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .footer-brand img {
+      height: 36px;
+      width: 36px;
+      object-fit: contain;
+    }
+    .footer-brand-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--cream);
+    }
+    .footer-brand-name span {
+      display: block;
+      font-size: 0.62rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      color: var(--concrete);
+    }
+    .footer-copy {
+      font-size: 0.72rem;
+      color: var(--concrete);
+    }
+    .footer-copy a { color: var(--orange); text-decoration: none; }
+
+    /* ── DIVIDER ───────────────────────────────────────── */
+    .section-divider {
+      height: 3px;
+      background: linear-gradient(90deg, var(--orange) 0%, var(--orange-dk) 30%, transparent 100%);
+    }
+
+    /* ── MOBILE ────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 0 4vw; }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
+      .hamburger { display: flex; }
+
+      .hero-stats {
+        position: relative;
+        bottom: auto; right: auto;
+        padding: 0 5vw;
+        margin-top: 40px;
+        justify-content: flex-start;
+        gap: 32px;
+      }
+      .stat { text-align: left; }
+
+      section { padding: 64px 4vw; }
+
+      .mv-grid { grid-template-columns: 1fr; }
+      .calidad-items { grid-template-columns: 1fr; }
+
+      .mundial-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .mundial-image-wrap { max-width: 400px; margin: 0 auto; }
+
+      .products-grid { grid-template-columns: 1fr 1fr; }
+
+      .contacto-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .products-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 2.4rem; }
+      .hero-stats { flex-direction: row; flex-wrap: wrap; gap: 20px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .mundial-badge { width: 80px; height: 80px; bottom: -16px; right: -12px; }
+      .mundial-badge-price { font-size: 0.9rem; }
+    }
+
+    /* ── MOBILE NAV OPEN ───────────────────────────────── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: rgba(13,27,42,0.98);
+      backdrop-filter: blur(10px);
+      z-index: 99;
+      padding: 24px 5vw;
+      border-bottom: 1px solid rgba(232,119,34,0.2);
+    }
+    .mobile-menu.open { display: flex; flex-direction: column; gap: 4px; }
+    .mobile-menu a {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--cream);
+      text-decoration: none;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--orange); }
+    .mobile-menu a:last-child { border-bottom: none; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <img src="imagenes/Logo.png" alt="Jale Genuino">
+    <span class="nav-brand">Jale Genuino</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#mundial">Ed. Mundial</a></li>
+    <li><a href="#catalogo">Catalogo</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a class="nav-cta" href="#contacto">Pedir Ahora</a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#nosotros" onclick="toggleMenu()">Nosotros</a>
+  <a href="#mundial" onclick="toggleMenu()">Edicion Mundial</a>
+  <a href="#catalogo" onclick="toggleMenu()">Catalogo</a>
+  <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-slash"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Coleccion 2026</div>
+    <h1 class="hero-title">
+      La playera<br>del <span class="accent">Jale</span>
+    </h1>
+    <p class="hero-subtitle">Tu Tienda de Trabajo</p>
+    <p class="hero-desc">Ropa de trabajo premium diseñada para las jornadas mas exigentes. Calidad industrial, resistencia comprobada, presentacion ejecutiva para cada obra.</p>
+    <div class="hero-actions">
+      <a href="#catalogo" class="btn-primary">Ver Catalogo</a>
+      <a href="#contacto" class="btn-secondary">Cotizar Pedido</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">240g</div>
+      <div class="stat-label">Densidad textil</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Algodon organico</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5+</div>
+      <div class="stat-label">Modelos disponibles</div>
+    </div>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section id="nosotros">
+  <div class="section-eyebrow">Quienes Somos</div>
+  <h2 class="section-title">Calidad que<br>se demuestra en la obra</h2>
+  <div class="mv-grid">
+    <div class="mv-card">
+      <div class="mv-card-label">Mision</div>
+      <div class="mv-card-title">El lienzo del profesional</div>
+      <p>Equipar a los profesionales, tecnicos y maestros del sector de la construccion con ropa de trabajo premium de la mas alta durabilidad, confort y resistencia. Prendas que soporten las exigentes jornadas del jale diario y proyecten con orgullo la identidad corporativa de cada cliente en cada obra.</p>
+    </div>
+    <div class="mv-card">
+      <div class="mv-card-label">Vision</div>
+      <div class="mv-card-title">Lider regional en textiles de obra</div>
+      <p>Consolidarnos como el referente de confianza en uniformes y textiles de uso rudo premium para la industria de la construccion a nivel regional. Ser reconocidos por la innovacion en resistencia de materiales y la excelencia en personalizacion, dignificando el trabajo operativo con prendas de presentacion ejecutiva impecable.</p>
+    </div>
+  </div>
+  <div class="calidad-block">
+    <div class="calidad-title">Politicas de Calidad</div>
+    <div class="calidad-items">
+      <div class="calidad-item">
+        <div class="calidad-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 2L2 7v10l10 5 10-5V7z"/></svg>
+        </div>
+        <div class="calidad-item-text">
+          <strong>Textiles de Resistencia Industrial</strong>
+          <span>Algodon peinado de alta densidad (240g) y mezclas tecnicas transpirables con alta resistencia al rasgado y friccion.</span>
+        </div>
+      </div>
+      <div class="calidad-item">
+        <div class="calidad-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <div class="calidad-item-text">
+          <strong>Compatibilidad de Estampado Premium</strong>
+          <span>Superficies con tejidos de fibra larga uniformes, optimizados para serigrafía horneada, bordados densos o vinil textil.</span>
+        </div>
+      </div>
+      <div class="calidad-item">
+        <div class="calidad-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div class="calidad-item-text">
+          <strong>Personalizacion por Pedido</strong>
+          <span>Cada prenda fabricada segun los requerimientos del cliente: logotipo, color, talla y tecnica de impresion elegida.</span>
+        </div>
+      </div>
+      <div class="calidad-item">
+        <div class="calidad-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="calidad-item-text">
+          <strong>Durabilidad Certificada</strong>
+          <span>Costuras de doble remate reforzadas, teñido de alta fijacion que soporta lavados constantes de jornada laboral.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- MUNDIAL FEATURED -->
+<section id="mundial">
+  <div class="section-eyebrow">Pieza Exclusiva</div>
+  <div class="mundial-inner">
+    <div class="mundial-image-wrap">
+      <img src="imagenes/Playera_Mexico_Edicion_Mundial.jpeg" alt="Playera Edicion Especial Mexico Mundial 2026" loading="lazy">
+      <div class="mundial-badge">
+        <div class="mundial-badge-price">$1,250</div>
+        <div class="mundial-badge-label">MXN</div>
+      </div>
+    </div>
+    <div class="mundial-content">
+      <div class="mundial-flag">
+        <div class="flag-stripe green"></div>
+        <div class="flag-stripe white"></div>
+        <div class="flag-stripe red"></div>
+      </div>
+      <div class="mundial-tag">Copa del Mundo 2026</div>
+      <h2 class="mundial-title">Playera Edicion Especial<br>Seleccion de Mexico</h2>
+      <p class="mundial-desc">Edicion conmemorativa especial que combina la pasion por la seleccion nacional con la resistencia textil para el dia a dia. Una prenda de coleccionista fabricada bajo los mismos estandares de durabilidad industrial que distinguen a toda la linea El Jale.</p>
+      <div class="mundial-specs">
+        <div class="spec-row">
+          <div class="spec-dot"></div>
+          <div class="spec-text"><strong>Tejido:</strong> Algodon peinado de alta densidad 240g</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-dot"></div>
+          <div class="spec-text"><strong>Costuras:</strong> Doble remate reforzado en hombros y cuello</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-dot"></div>
+          <div class="spec-text"><strong>Estampado:</strong> Termo-sellado industrial en foil dorado y verde esmeralda</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-dot"></div>
+          <div class="spec-text"><strong>Acabado:</strong> Alta costura resistente al desgaste continuo</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-dot"></div>
+          <div class="spec-text"><strong>SKU:</strong> PL001 — Disponibilidad limitada</div>
+        </div>
+      </div>
+      <div class="mundial-price-block">
+        <div class="mundial-price">$1,250</div>
+        <div class="mundial-currency">MXN / pieza</div>
+      </div>
+      <a href="#contacto" class="btn-primary">Apartar Pieza</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CATALOGO -->
+<section id="catalogo">
+  <div class="catalog-header">
+    <div>
+      <div class="section-eyebrow">Productos</div>
+      <h2 class="section-title">Catalogo Completo</h2>
+    </div>
+    <div class="catalog-count">5 modelos disponibles &mdash; Coleccion 2026</div>
+  </div>
+  <div class="products-grid">
+
+    <!-- PL001 -->
+    <div class="product-card">
+      <div class="card-image-wrap">
+        <img class="card-image" src="imagenes/Playera_Mexico_Edicion_Mundial.jpeg" alt="Playera Edicion Especial Mexico Mundial" loading="lazy">
+        <div class="card-image-overlay"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-sku">PL001</div>
+        <div class="card-name">Edicion Especial Seleccion de Mexico</div>
+        <p class="card-desc">Edicion conmemorativa especial. Algodon peinado 240g, costuras de doble remate reforzadas y estampado con termosellado industrial en foil dorado y verde esmeralda.</p>
+        <div class="card-footer">
+          <div class="card-price">$1,250 <span>MXN por pieza</span></div>
+          <a href="#contacto" class="card-action">Pedir</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PL002 -->
+    <div class="product-card">
+      <div class="card-image-wrap">
+        <img class="card-image" src="imagenes/Playera_Lisa_Negro_Custom.jpeg" alt="Playera Lisa Premium Colores" loading="lazy">
+        <div class="card-image-overlay"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-sku">PL002</div>
+        <div class="card-name">Playera Lisa Premium — Colores Disponibles</div>
+        <p class="card-desc">Prenda de uso rudo con corte ejecutivo. Algodon 100% organico de fibra gruesa, teñido industrial de alta fijacion. Lista para estampar logos de constructoras o contratistas por pedido.</p>
+        <div class="card-footer">
+          <div class="card-price">$790 <span>MXN por pieza</span></div>
+          <a href="#contacto" class="card-action">Pedir</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PL003 -->
+    <div class="product-card">
+      <div class="card-image-wrap">
+        <img class="card-image" src="imagenes/Playera_Lisa_Gris_Custom.jpeg" alt="Playera Lisa Gris Jaspe" loading="lazy">
+        <div class="card-image-overlay"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-sku">PL003</div>
+        <div class="card-name">Playera Lisa Premium — Gris Jaspe</div>
+        <p class="card-desc">Composicion hibrida 90% algodon peinado / 10% poliester premium. Caida impecable, maxima transpirabilidad. Tapacosturas reforzado y remates de doble aguja en mangas.</p>
+        <div class="card-footer">
+          <div class="card-price">$790 <span>MXN por pieza</span></div>
+          <a href="#contacto" class="card-action">Pedir</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PL004 -->
+    <div class="product-card">
+      <div class="card-image-wrap">
+        <img class="card-image" src="imagenes/Playera_Lisa_Blanca_Custom.jpeg" alt="Playera Lisa Blanco Optico" loading="lazy">
+        <div class="card-image-overlay"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-sku">PL004</div>
+        <div class="card-name">Playera Lisa Premium — Blanco Optico</div>
+        <p class="card-desc">Base de alta visibilidad para uniformes y logotipos empresariales. Hilo de algodon peinado premium de fibra larga. Estructura tubular sin costuras en costados para maxima comodidad.</p>
+        <div class="card-footer">
+          <div class="card-price">$790 <span>MXN por pieza</span></div>
+          <a href="#contacto" class="card-action">Pedir</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PL005 -->
+    <div class="product-card">
+      <div class="card-image-wrap">
+        <img class="card-image" src="imagenes/Playera_Grafica_Maestro.jpeg" alt="Playera Grafica Maestro de la Construccion" loading="lazy">
+        <div class="card-image-overlay"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-sku">PL005</div>
+        <div class="card-name">Grafica de Autor "Maestro de la Construccion"</div>
+        <p class="card-desc">Playera urbana premium. Lona ligera de algodon de maxima resistencia con estampado frontal de grado industrial en tintas de tacto cero. Corte moderno y holgado.</p>
+        <div class="card-footer">
+          <div class="card-price">$850 <span>MXN por pieza</span></div>
+          <a href="#contacto" class="card-action">Pedir</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="section-eyebrow">Pedidos y Consultas</div>
+  <h2 class="section-title">Contactar al<br>Equipo</h2>
+  <div class="contacto-grid">
+    <div>
+      <p class="contacto-intro">Para cotizaciones, pedidos por volumen o personalizacion de logotipos corporativos, comunicate directamente con el encargado. Respondemos de lunes a sabado en horario de obra.</p>
+      <div class="contacto-encargado">
+        <div class="encargado-avatar">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div>
+          <div class="encargado-label">Encargado del negocio</div>
+          <div class="encargado-name">Aimar Caballero Gonzalez</div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-channels">
+      <a class="contact-channel" href="https://www.instagram.com/jalegenuino" target="_blank">
+        <div class="channel-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="url(#ig-grad)" stroke-width="1.8">
+            <defs>
+              <linearGradient id="ig-grad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#E87722"/>
+                <stop offset="100%" stop-color="#C4621A"/>
+              </linearGradient>
+            </defs>
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4.5"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="var(--orange)" stroke="none"/>
+          </svg>
+        </div>
+        <div>
+          <div class="channel-label">Instagram</div>
+          <div class="channel-value">@jalegenuino</div>
+        </div>
+      </a>
+      <a class="contact-channel" href="https://wa.me/521XXXXXXXXXX" target="_blank">
+        <div class="channel-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="1.8">
+            <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="channel-label">WhatsApp</div>
+          <div class="channel-value">Cotizaciones directas</div>
+        </div>
+      </a>
+      <a class="contact-channel" href="mailto:contacto@jalegenuino.mx">
+        <div class="channel-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="1.8">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <div>
+          <div class="channel-label">Correo electronico</div>
+          <div class="channel-value">contacto@jalegenuino.mx</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="imagenes/Logo.png" alt="Jale Genuino">
+      <div class="footer-brand-name">
+        Jale Genuino
+        <span>Tu Tienda de Trabajo</span>
+      </div>
+    </div>
+    <div class="footer-copy">
+      &copy; 2026 Jale Genuino. Todos los derechos reservados.<br>
+      Encargado: <a href="#contacto">Aimar Caballero Gonzalez</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('open');
+  }
+  // Close mobile menu on resize
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) {
+      document.getElementById('mobileMenu').classList.remove('open');
+    }
+  });
+  // Smooth scroll offset for fixed nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 64;
+        window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
